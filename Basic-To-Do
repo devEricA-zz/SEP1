@@ -3,16 +3,17 @@ Parameters
   - given by user
 Output
   - local weather and local map (and extra info if desired)
-  Utilize API's
-    -  Google Map, Bing Map, Yahoo Weather API, OpenWeatherMap
+Utilize API's
+    - Location: Google Map
+    - Weather: Current Weather API
 
 IMPLEMENT - A simple user interface mockup/prototype (3 points)
 CREATE - All user stories (5 points)
     As an individual 
-    I want to see current weather in my location, or a desired location 
+    I want to see current weather in a given location 
     So that I can better prepare for my daily activities
 FIND - All use case diagrams (5 points)
-  ???
+   - The stick figures and diagrams thing 
 DRAW - The activity diagram showing how the user gets the information of the
 local map and the local weather (2 points)
-    - The stick figures and diagrams thing 
+   - almost a flow chart, from start to finish
