@@ -3,10 +3,11 @@ Parameters
   - given by user
 Output
   - local weather and local map (and extra info if desired)
+----------------------------------------------------------------------------------------------------------------------------------------  
 Utilize API's
     - Location: Google Map
-    - Weather: Current Weather API
-
+    - Weather: Current Weather API (weather bit.io)
+----------------------------------------------------------------------------------------------------------------------------------------
 IMPLEMENT - A simple user interface mockup/prototype (3 points)
 CREATE - All user stories (5 points)
     As an individual 
@@ -19,3 +20,6 @@ DRAW - The activity diagram showing how the user gets the information of the
   local map and the local weather (2 points)
    - almost a flow chart, from start to finish
    - utilize draw.io for diagrams
+----------------------------------------------------------------------------------------------------------------------------------------
+- WORK-IN-PROGRESS : Dhruv has use-case
+- WORK-IN-PROGRESS : Trisha has a user story
