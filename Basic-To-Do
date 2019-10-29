@@ -5,7 +5,7 @@ Output
   - local weather and local map (and extra info if desired)
 ----------------------------------------------------------------------------------------------------------------------------------------  
 Utilize API's
-    - Location: MapBox (GoogleMaps: billing issues)
+    - Location: embedded Google Maps (GoogleMaps: billing issues)
     - Weather: Current Weather API (weather bit.io)
 ----------------------------------------------------------------------------------------------------------------------------------------
 IMPLEMENT - A simple user interface mockup/prototype (3 points)
