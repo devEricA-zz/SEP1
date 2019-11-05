@@ -1,29 +1,50 @@
 <!doctype html>
+<html>
+<body>
 <h1><center>Local Map & Weather</center></h1>
 <form>
 <center>
   <div class="form-group">
     <label for="LocInput"></label>
-    <input class="form-control" id="LocInput" placeholder="Enter Address or Zip Code">
+    <input class="form-control" id="LocInput" placeholder="Enter Address or Zip Code"></input>
+    <button onclick="loadAddress()" type="button">Check</button>
   </div>
 </center>
 </form>
 <iframe
+  id="Welcome_Display"					      
   width="1000"
   height="700"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c
-    &q=1825+texas+tech+parkway, Lubbock+TX, 79415" allowfullscreen>
+  &q=1825+texas+tech+parkway, Lubbock+TX, 79415" allowfullscreen>
 </iframe>
+<!--
 <iframe
   width="500"
-  height="700"
+  height="300"
   frameborder="0" style="border:0"
   src= "http://openweathermap.org/img/wn/10d@2x.png"
-</iframe>
+</iframe>-->
 <iframe
+  id="Weather_Data"
   width="500"
   height="400"
   frameborder="0" style="border:0"
-  src= "http://www.openweathermap.org/data/2.5/weather?zip=79415,us&appid=b6907d289e10d714a6e88b30761fae22" >
+  src= "http://api.openweathermap.org/data/2.5/weather?zip=79415,us&appid=fe871de616008d75a917c6eabcccd1bb" >
 </iframe>
+<p id="debug"></p>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script type="text/javascript">
+function loadAddress(){
+	var search_data = document.getElementById("LocInput").value;
+	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data;
+	document.getElementById('Welcome_Display').src= Target_MapAddress;
+	var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
+	document.getElementById('Weather_Data').src=Target_WeatherAddress;
+}
+</script>
+</body>
+</html>
