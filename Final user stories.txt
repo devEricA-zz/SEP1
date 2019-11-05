@@ -1,0 +1,19 @@
+		Webpage displaying Local Map and Weather - User Stories
+
+
+1) Weather user story
+    
+	As an individual 
+    
+	I want to see current weather in a given location 
+    
+	So that I can better prepare for my daily activities
+
+
+2) Location user story
+    
+	As an individual 
+    
+	I want to see a given location on a map 
+    
+	So that I can familiarize myself with the surrounding area.
