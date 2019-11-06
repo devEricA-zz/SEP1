@@ -40,10 +40,49 @@
 <script type="text/javascript">
 function loadAddress(){
 	var search_data = document.getElementById("LocInput").value;
+	var search_data_length = document.getElementById("LocInput").value.length;
+	var numComparsion = /^[0-9]+$/;
 	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data;
 	document.getElementById('Welcome_Display').src= Target_MapAddress;
-	var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
-	document.getElementById('Weather_Data').src=Target_WeatherAddress;
+	if(search_data_length == 5)
+	{
+		if(String(search_data).match(numComparsion))
+		{
+			var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
+			document.getElementById('Weather_Data').src=Target_WeatherAddress;
+		}
+		else
+		{/*Something to display to indicate an invalid zip code for both Map/Weather*/}
+	}
+	else
+	{
+		if(String(search_data[search_data_length-1]).match(numbers) && String(search_data[0]).match(numbers))
+		{
+			var daZipCode = "";
+			var x;
+			for(x = search_data_length-6; x<search_data_length-1; x++)
+			{
+				if(String(search_data[x]).match(numbers))
+					daZipCode += search_data[x];
+				else
+					daZipCode = "Failed";
+			}
+			if(!daZipCode.equals("Failed"))
+			{
+				var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+daZipCode+",us&appid=fe871de616008d75a917c6eabcccd1bb";
+                        	document.getElementById('Weather_Data').src=Target_WeatherAddress;
+			}
+			else
+			{
+			/*Something to display to indicate an invalid address for both Map/Weather*/
+			}
+		}
+		else
+		{
+		/*Something to display an invalid address for both Map/Weather*/
+		}
+	}
+
 }
 </script>
 </body>
