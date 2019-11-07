@@ -43,43 +43,50 @@ function loadAddress(){
 	var search_data_length = document.getElementById("LocInput").value.length;
 	var numComparsion = /^[0-9]+$/;
 	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data;
-	document.getElementById('Welcome_Display').src= Target_MapAddress;
-	if(search_data_length == 5)
+	if(search_data_length === 5)
 	{
 		if(String(search_data).match(numComparsion))
 		{
+			document.getElementById('Welcome_Display').src= Target_MapAddress;
 			var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
 			document.getElementById('Weather_Data').src=Target_WeatherAddress;
 		}
 		else
-		{/*Something to display to indicate an invalid zip code for both Map/Weather*/}
+		{
+			alert("Invalid Zip Code");
+		}
+	}
+	else if (search_data_length < 5)
+	{
+		alert("Invalid Zip Code");
 	}
 	else
 	{
-		if(String(search_data[search_data_length-1]).match(numbers) && String(search_data[0]).match(numbers))
+		if(String(search_data[search_data_length-1]).match(numComparsion) && String(search_data[0]).match(numComparsion))
 		{
-			var daZipCode = "";
-			var x;
-			for(x = search_data_length-6; x<search_data_length-1; x++)
+			var daZipCode = search_data.substring(search_data_length-5, search_data_length);
+			var isValid = true;
+			for(var x = 0; x<daZipCode.length; x=x+1)
 			{
-				if(String(search_data[x]).match(numbers))
-					daZipCode += search_data[x];
-				else
-					daZipCode = "Failed";
+				if(!(String(search_data[x]).match(numComparsion)))
+				{
+					isValid = false;
+				}
 			}
-			if(!daZipCode.equals("Failed"))
+			if(!(isValid))
 			{
+				document.getElementById('Welcome_Display').src= Target_MapAddress;
 				var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+daZipCode+",us&appid=fe871de616008d75a917c6eabcccd1bb";
                         	document.getElementById('Weather_Data').src=Target_WeatherAddress;
 			}
 			else
 			{
-			/*Something to display to indicate an invalid address for both Map/Weather*/
+				alert("Invalid Address");
 			}
 		}
 		else
 		{
-		/*Something to display an invalid address for both Map/Weather*/
+			alert("Invalid Address");
 		}
 	}
 
