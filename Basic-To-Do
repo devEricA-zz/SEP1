@@ -1,0 +1,32 @@
+Parameters
+  - location (zip code, address)
+  - given by user
+Output
+  - local weather and local map (and extra info if desired)
+----------------------------------------------------------------------------------------------------------------------------------------  
+Utilize API's
+    - Location: embedded Google Maps (GoogleMaps: billing issues)
+    - Weather: Current Weather API (weather bit.io)
+----------------------------------------------------------------------------------------------------------------------------------------
+IMPLEMENT - A simple user interface mockup/prototype (3 points)
+CREATE - All user stories (5 points)
+  Weather user story
+    As an individual 
+    I want to see current weather in a given location 
+    So that I can better prepare for my daily activities
+  Location user story
+    As an individual 
+    I want to see a given location on a map 
+    So that I can familiarize myself with the surrounding area.
+DRAW - All use case diagrams (5 points)
+   - The stick figures and diagrams thing 
+   - utilize draw.io for diagrams
+DRAW - The activity diagram showing how the user gets the information of the
+  local map and the local weather (2 points)
+   - almost a flow chart, from start to finish
+   - utilize draw.io for diagrams
+----------------------------------------------------------------------------------------------------------------------------------------
+- WORK-IN-PROGRESS : Dhruv has use-case
+- WORK-IN-PROGRESS : Trisha has the user stories
+- WORK-IN-PROGRESS : Eric has an Activity Diagram
+- WORK-IN-PROGRESS : Eric working on protype mock-up look
