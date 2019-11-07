@@ -68,12 +68,12 @@ function loadAddress(){
 			var isValid = true;
 			for(var x = 0; x<daZipCode.length; x=x+1)
 			{
-				if(!(String(search_data[x]).match(numComparsion)))
+				if(!(String(daZipCode[x]).match(numComparsion)))
 				{
 					isValid = false;
 				}
 			}
-			if(!(isValid))
+			if(isValid)
 			{
 				document.getElementById('Welcome_Display').src= Target_MapAddress;
 				var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+daZipCode+",us&appid=fe871de616008d75a917c6eabcccd1bb";
