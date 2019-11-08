@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<body>
+<h1><center>Local Map & Weather</center></h1>
+<form>
+<center>
+  <div class="form-group">
+    <label for="LocInput"></label>
+    <input class="form-control" id="LocInput" placeholder="Enter Address or Zip Code"></input>
+    <button onclick="loadAddress()" type="button">Check</button>
+  </div>
+</center>
+</form>
+<iframe
+  id="Welcome_Display"					      
+  width="1000"
+  height="700"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c
+  &q=1825+texas+tech+parkway, Lubbock+TX, 79415" allowfullscreen>
+</iframe>
+<!--
+<iframe
+  width="500"
+  height="300"
+  frameborder="0" style="border:0"
+  src= "http://openweathermap.org/img/wn/10d@2x.png"
+</iframe>-->
+<iframe
+  id="Weather_Data"
+  width="500"
+  height="400"
+  frameborder="0" style="border:0"
+  src= "http://api.openweathermap.org/data/2.5/weather?zip=79415,us&appid=fe871de616008d75a917c6eabcccd1bb" >
+</iframe>
+<p id="debug"></p>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script type="text/javascript">
+
+
+        var zipcode = document.getElementById("LocInput").value;
+        
+            
+        function drawWeather( d ){
+            var celsius = Math.round(parseFloat(d.main.temp)-273.15);
+            var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+        
+            console.log(d);
+            document.getElementById('description').innerHTML = d.weather[0].description;
+            document.getElementById('temp').innerHTML = celsius + '&deg;';
+            document.getElementById('location').innerHTML = d.name;
+        
+        function weatherBalloon ( cityZip ) {
+            var key = 'fe871de616008d75a917c6eabcccd1bb';
+            fetch('https://api.openweathermap.org/data/2.5/weather?zip='+ cityZip + '&appid='+ key)
+            .then(function(resp){ return resp.json()})
+            .then(function(data){
+                console.log(data);
+                drawWeather(data);
+            })
+        
+            .catch(function() {
+        
+            });
+        }
+        }
+        
+function loadAddress(){
+	var search_data = document.getElementById("LocInput").value;
+	var search_data_length = document.getElementById("LocInput").value.length;
+	var numComparsion = /^[0-9]+$/;
+	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data;
+	if(search_data_length === 5)
+	{
+		if(String(search_data).match(numComparsion))
+		{
+			document.getElementById('Welcome_Display').src= Target_MapAddress;
+			var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
+			document.getElementById('Weather_Data').src=Target_WeatherAddress;
+		}
+		else
+		{
+			alert("Invalid Zip Code");
+		}
+	}
+	else if (search_data_length < 5)
+	{
+		alert("Invalid Zip Code");
+	}
+	else
+	{
+		if(String(search_data[search_data_length-1]).match(numComparsion) && String(search_data[0]).match(numComparsion))
+		{
+			var daZipCode = search_data.substring(search_data_length-5, search_data_length);
+			var isValid = true;
+			for(var x = 0; x<daZipCode.length; x=x+1)
+			{
+				if(!(String(daZipCode[x]).match(numComparsion)))
+				{
+					isValid = false;
+				}
+			}
+			if(isValid)
+			{
+				document.getElementById('Welcome_Display').src= Target_MapAddress;
+				var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+daZipCode+",us&appid=fe871de616008d75a917c6eabcccd1bb";
+                        	document.getElementById('Weather_Data').src=Target_WeatherAddress;
+			}
+			else
+			{
+				alert("Invalid Address");
+			}
+		}
+		else
+		{
+			alert("Invalid Address");
+		}
+	}
+}
+</script>
+</body>
+</html>
