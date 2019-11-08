@@ -100,7 +100,7 @@ function processWeather(url)
 			var icon = "<img src = http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png>";
 			var currentTemp = "<br>Temp: " + tempAsFarenheight.toFixed(0) + " F</br>";
 			var humidity = "<br>Humidity: " + data.main.humidity + "%</br>";
-			var wind = "<br>Wind: " + data.wind.speed + "MPH</br>";
+			var wind = "<br>Wind: " + data.wind.speed + " MPH</br>";
 			$('.Weather_Data').append(icon);
 			$('.Weather_Data').append(mainWeather);
 			$('.Weather_Data').append(currentTemp);
