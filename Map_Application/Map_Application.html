@@ -16,40 +16,37 @@
   width="1000"
   height="700"
   frameborder="0" style="border:0"
+  align="right"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c
-  &q=1825+texas+tech+parkway, Lubbock+TX, 79415" allowfullscreen>
+  &q=999999"
+  >
 </iframe>
-<!--
-<iframe
-  width="500"
-  height="300"
-  frameborder="0" style="border:0"
-  src= "http://openweathermap.org/img/wn/10d@2x.png"
-</iframe>-->
-<iframe
-  id="Weather_Data"
-  width="500"
-  height="400"
-  frameborder="0" style="border:0"
-  src= "http://api.openweathermap.org/data/2.5/weather?zip=79415,us&appid=fe871de616008d75a917c6eabcccd1bb" >
-</iframe>
-<p id="debug"></p>
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<div class = "Weather_Data">
+	<p>Sample Weather </p>
+	<img src = http://openweathermap.org/img/wn/10d@2x.png>
+	<br>Rain</br>
+	<br>Temp: 64 F</br>
+	<br>Wind: 10 MPH</br>	
+	<br>Humidity: 65%</br>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 function loadAddress(){
 	var search_data = document.getElementById("LocInput").value;
 	var search_data_length = document.getElementById("LocInput").value.length;
 	var numComparsion = /^[0-9]+$/;
-	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data;
+	var Target_MapAddress = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDNRmufQHfCRrlCbsx_n_VNoSSploKRB2c&q="+search_data
+	$.getJSON(Target_MapAddress, function(data){
+		
+	})
 	if(search_data_length === 5)
 	{
 		if(String(search_data).match(numComparsion))
 		{
 			document.getElementById('Welcome_Display').src= Target_MapAddress;
 			var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+search_data+",us&appid=fe871de616008d75a917c6eabcccd1bb";
-			document.getElementById('Weather_Data').src=Target_WeatherAddress;
+			//document.getElementById('Weather_Data').src=Target_WeatherAddress;
 		}
 		else
 		{
@@ -77,7 +74,7 @@ function loadAddress(){
 			{
 				document.getElementById('Welcome_Display').src= Target_MapAddress;
 				var Target_WeatherAddress = "http://api.openweathermap.org/data/2.5/weather?zip="+daZipCode+",us&appid=fe871de616008d75a917c6eabcccd1bb";
-                        	document.getElementById('Weather_Data').src=Target_WeatherAddress;
+                        	//document.getElementById('Weather_Data').src=Target_WeatherAddress;
 			}
 			else
 			{
@@ -89,7 +86,33 @@ function loadAddress(){
 			alert("Invalid Address");
 		}
 	}
-
+	processWeather(Target_WeatherAddress)
+}
+function processWeather(url)
+{
+	$.getJSON(url, function(data){
+		if(!(data.cod === "404"))
+		{
+			$('.Weather_Data').empty();
+			$('.Weather_Data').append("<p> Current Weather for the Location </p>");
+			var tempAsFarenheight = data.main.temp * (9/5) - 459.67;
+			var mainWeather = "<br>" + data.weather[0].main + "</br>"; 
+			var icon = "<img src = http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png>";
+			var currentTemp = "<br>Temp: " + tempAsFarenheight.toFixed(0) + " F</br>";
+			var humidity = "<br>Humidity: " + data.main.humidity + "%</br>";
+			var wind = "<br>Wind: " + data.wind.speed + "MPH</br>";
+			$('.Weather_Data').append(icon);
+			$('.Weather_Data').append(mainWeather);
+			$('.Weather_Data').append(currentTemp);
+			$('.Weather_Data').append(wind);
+			$('.Weather_Data').append(humidity);
+		}
+		else
+		{
+			alert("Invalid Input")
+		}
+		
+	});
 }
 </script>
 </body>
